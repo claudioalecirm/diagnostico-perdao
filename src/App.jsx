@@ -19,7 +19,7 @@ const PERGUNTAS = [
 ];
 
 const PESOS = [0, 1, 2, 3];
-const WEBHOOK_URL = "https://hook.us2.make.com/nf93l27rjl27o3d6scayax3nldlz8yx9";
+const WEBHOOK_URL = "https://hook.us2.make.com/2ghshg9labe5hraw74zii8ahwh6nepgr";
 
 function calcularPerfil(respostas) {
   const total = respostas.reduce((acc, r) => acc + PESOS[r], 0);
