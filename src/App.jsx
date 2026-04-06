@@ -204,7 +204,7 @@ Escreva uma devolutiva pessoal e impactante em formato JSON com esta estrutura e
 
 Responda APENAS o JSON. Sem explicações, sem markdown, sem texto fora do JSON.`;
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
+  const response = await fetch("/api/claude", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
