@@ -750,7 +750,7 @@ export default function DiagnosticoPerdao() {
 
             <div className="chamada-final">{devolutiva.chamada}</div>
 
-            <p style={{ fontSize: "11px", color: "#3a3530", textAlign: "center", marginTop: "16px" }}>
+                <p style={{ fontSize: "11px", color: "#3a3530", textAlign: "center", marginTop: "16px" }}>
               Uma cópia foi enviada para {email}
             </p>
           </div>
