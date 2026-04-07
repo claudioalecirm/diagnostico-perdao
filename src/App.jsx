@@ -52,7 +52,6 @@ export default function App() {
       await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        mode: "no-cors",
         body: JSON.stringify({ nome, email, perfil, pontuacao, respostas: resumo }),
       });
     } catch (e) {}
