@@ -19,7 +19,6 @@ const PERGUNTAS = [
 ];
 
 const PESOS = [0, 1, 2, 3];
-const WEBHOOK_URL = "https://hook.us2.make.com/2ghshg9labe5hraw74zii8ahwh6nepgr";
 
 function calcularPerfil(respostas) {
   const total = respostas.reduce((acc, r) => acc + PESOS[r], 0);
@@ -43,18 +42,23 @@ export default function App() {
 
   const progresso = (perguntaAtual / PERGUNTAS.length) * 100;
 
-  async function enviarParaMake(respostasFinais) {
+  async function enviarParaAPI(respostasFinais) {
     setEnviando(true);
     const perfil = calcularPerfil(respostasFinais);
     const pontuacao = respostasFinais.reduce((acc, r) => acc + PESOS[r], 0);
-    const resumo = PERGUNTAS.map((p, i) => ({ pergunta: p.texto, resposta: p.opcoes[respostasFinais[i]] }));
+    const resumo = PERGUNTAS.map((p, i) => ({
+      pergunta: p.texto,
+      resposta: p.opcoes[respostasFinais[i]],
+    }));
     try {
-      await fetch(WEBHOOK_URL, {
+      await fetch("/api/enviar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nome, email, perfil, pontuacao, respostas: resumo }),
       });
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
     setEnviando(false);
     setEtapa("confirmacao");
   }
@@ -69,7 +73,7 @@ export default function App() {
         setPerguntaAtual((p) => p + 1);
         setAnimating(false);
       } else {
-        enviarParaMake(novas);
+        enviarParaAPI(novas);
       }
     }, 400);
   }
@@ -195,7 +199,7 @@ export default function App() {
                 <button key={i} className="op" onClick={() => responder(i)} disabled={animating || enviando}>{op}</button>
               ))}
             </div>
-            {enviando && <p style={{ textAlign: "center", color: "#5a4a3a", fontSize: "12px", marginTop: "20px", letterSpacing: "0.1em" }}>Registrando suas respostas...</p>}
+            {enviando && <p style={{ textAlign: "center", color: "#5a4a3a", fontSize: "12px", marginTop: "20px", letterSpacing: "0.1em" }}>Preparando sua devolutiva...</p>}
           </div>
         )}
 
