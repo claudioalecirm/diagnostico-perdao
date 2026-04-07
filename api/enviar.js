@@ -53,7 +53,7 @@ export default async function handler(req, res) {
     });
 
     // Salva lead no Notion via Make (disparo silencioso — não bloqueia a resposta)
-    fetch("https://hook.us2.make.com/nf93l27rjl27o3d6scayax3nldlz8yx9", {
+    await fetch("https://hook.us2.make.com/nf93l27rjl27o3d6scayax3nldlz8yx9", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nome, email, perfil, pontuacao }),
