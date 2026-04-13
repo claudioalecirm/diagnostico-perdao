@@ -1,12 +1,306 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diagnóstico — Claudio Alecrim</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Diagnóstico de Perdão — Claudio Alecrim</title>
+</head>
+<body style="margin:0;padding:20px 0;background:#0a0a0a;font-family:'Inter',Arial,sans-serif;">
+
+<div style="max-width:620px;margin:0 auto;background:#111111;border:1px solid #1e1e1e;">
+
+  <!-- ══ CABEÇALHO ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="background:#0d0d0d;padding:28px 40px 24px;border-bottom:3px solid #c8a97a;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="vertical-align:middle;">
+              <p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a4035;">Diagnóstico de Perdão</p>
+              <p style="margin:0;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">Claudio Alecrim</p>
+            </td>
+            <td style="text-align:right;vertical-align:middle;">
+              <!-- Logo placeholder: substituir src pelo base64 ou URL do logo -->
+              <div style="width:56px;height:56px;background:#1e1e1e;border:1px solid #2e2e2e;border-radius:4px;display:inline-block;line-height:56px;text-align:center;">
+                <span style="font-family:Georgia,serif;font-size:18px;color:#c8a97a;">C</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ SAUDAÇÃO ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a4035;">Seu resultado</p>
+        <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-size:26px;font-weight:400;line-height:1.3;color:#e8e0d4;">{{NOME}}, seu diagnóstico está aqui.</h1>
+        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">O que você vai ler a seguir não é uma sentença — é um espelho. Não existe resposta certa ou errada. Existe o que você realmente está carregando. E a única coisa que importa agora é o que você vai fazer com isso.</p>
+        <div style="height:1px;background:#1e1e1e;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ BLOCO 1: PERFIL DE INTENSIDADE ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">Nível de Bloqueio</p>
+        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">Seu perfil de perdão</h2>
+        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">Como a falta de perdão opera no seu dia a dia</p>
+
+        <!-- Badge do perfil -->
+        <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-left:4px solid #c8a97a;padding:20px 24px;margin-bottom:20px;">
+          <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a4035;">Seu perfil</p>
+          <p style="margin:0 0 12px;font-family:Georgia,serif;font-size:28px;font-style:italic;color:#c8a97a;">{{PERFIL_NOME}}</p>
+          <!-- Ex: LIVRE / PROCESSANDO / PRESO / ACORRENTADO -->
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">{{PERFIL_DESCRICAO}}</p>
+        </div>
+
+        <!-- O que esse perfil significa na prática -->
+        <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:18px 22px;margin-bottom:24px;">
+          <p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">O que isso significa na prática</p>
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">{{PERFIL_PRATICA}}</p>
+        </div>
+
+        <div style="height:1px;background:#1e1e1e;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ BLOCO 2: VÍNCULO FERIDO ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">Onde está concentrado</p>
+        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">O vínculo mais afetado</h2>
+        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">O tipo de relação onde a ferida costuma estar mais ativa</p>
+
+        <!-- Cards de vínculo — 2 colunas -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+          <tr>
+            <td width="50%" style="padding-right:8px;vertical-align:top;">
+              <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-top:3px solid #c8a97a;padding:18px 20px;">
+                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Vínculo Primário</p>
+                <p style="margin:0 0 10px;font-family:Georgia,serif;font-size:18px;color:#e8e0d4;">{{VINCULO_PRIMARIO}}</p>
+                <!-- Ex: Figura de Autoridade -->
+                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.65;color:#7a6a5a;">{{VINCULO_PRIMARIO_DESC}}</p>
+              </div>
+            </td>
+            <td width="50%" style="padding-left:8px;vertical-align:top;">
+              <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-top:3px solid #5a4a3a;padding:18px 20px;">
+                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Vínculo Secundário</p>
+                <p style="margin:0 0 10px;font-family:Georgia,serif;font-size:18px;color:#e8e0d4;">{{VINCULO_SECUNDARIO}}</p>
+                <!-- Ex: Relacionamento Íntimo -->
+                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.65;color:#7a6a5a;">{{VINCULO_SECUNDARIO_DESC}}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- O que o vínculo revela -->
+        <div style="background:#0d0d0d;border:1px solid #1e1e1e;border-left:4px solid #c8a97a;padding:18px 22px;margin-bottom:24px;">
+          <p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">O que isso revela</p>
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">{{VINCULO_LEITURA}}</p>
+        </div>
+
+        <div style="height:1px;background:#1e1e1e;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ BLOCO 3: O QUE ESTÁ CUSTANDO ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">O preço que você paga</p>
+        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">O que esse bloqueio está custando</h2>
+        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">Ninguém carrega esse peso de graça — sempre há um custo real</p>
+
+        <div style="border-left:3px solid #c8a97a;padding:20px 24px;background:#0d0d0d;margin-bottom:16px;">
+          <p style="margin:0;font-family:Georgia,serif;font-size:18px;line-height:1.75;color:#e8e0d4;font-style:italic;">{{CUSTO_TEXTO}}</p>
+        </div>
+
+        <!-- Áreas afetadas -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+          <tr>
+            <td width="33%" style="padding-right:6px;vertical-align:top;">
+              <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:14px 16px;text-align:center;">
+                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Relações</p>
+                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#9a8a7a;">{{CUSTO_RELACOES}}</p>
+              </div>
+            </td>
+            <td width="33%" style="padding:0 3px;vertical-align:top;">
+              <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:14px 16px;text-align:center;">
+                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Decisões</p>
+                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#9a8a7a;">{{CUSTO_DECISOES}}</p>
+              </div>
+            </td>
+            <td width="33%" style="padding-left:6px;vertical-align:top;">
+              <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:14px 16px;text-align:center;">
+                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Espiritualidade</p>
+                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#9a8a7a;">{{CUSTO_ESPIRITUALIDADE}}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <div style="height:1px;background:#1e1e1e;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ BLOCO 4: O OUTRO LADO ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">O contraste</p>
+        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">O que muda quando esse peso vai embora</h2>
+        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">Perdão não é esquecimento — é a decisão de não deixar o passado governar o presente</p>
+
+        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:16px;line-height:1.8;color:#9a8a7a;">{{VIRADA_TEXTO}}</p>
+
+        <!-- Frase de destaque -->
+        <div style="background:#0d0d0d;border:1px solid #2a2a2a;padding:24px;margin-bottom:24px;text-align:center;">
+          <p style="margin:0;font-family:Georgia,serif;font-size:20px;font-style:italic;line-height:1.6;color:#c8a97a;">{{VIRADA_FRASE_DESTAQUE}}</p>
+        </div>
+
+        <div style="height:1px;background:#1e1e1e;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ BLOCO 5: PRÓXIMO PASSO (PITCH) ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:32px 40px 0;">
+        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">O próximo passo</p>
+        <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">Isso tem solução — e ela tem um caminho.</h2>
+
+        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:16px;line-height:1.8;color:#9a8a7a;">Diagnóstico sem movimento é só mais uma informação que você vai carregar. O perdão é um processo — e processos precisam de estrutura, de acompanhamento, e de alguém que já entende o que está acontecendo dentro de você.</p>
+
+        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:16px;line-height:1.8;color:#9a8a7a;">Na <strong style="color:#e8e0d4;">Mesa de Governo</strong> você vai entrar em contato com uma dinâmica de perdão que vai te dar a primeira respiração real — com outros homens que estão no mesmo processo e com suporte direto de quem entende esse caminho.</p>
+
+        <!-- CTA -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+          <tr>
+            <td style="text-align:center;padding:8px 0;">
+              <a href="https://claudioalecrim.com.br/mesa-de-governo"
+                 style="display:inline-block;background:#c8a97a;color:#0a0a0a;font-family:Arial,sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 40px;font-weight:700;">
+                Quero participar da Mesa de Governo
+              </a>
+            </td>
+          </tr>
+        </table>
+
+        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#5a5050;text-align:center;">Essa não é uma solução rápida. É um processo real.<br>Mas começa com uma decisão agora.</p>
+
+        <div style="height:1px;background:#1e1e1e;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ ASSINATURA ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="padding:28px 40px 32px;">
+        <div style="background:#0d0d0d;border:1px solid #1e1e1e;padding:20px 24px;">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding-right:16px;vertical-align:middle;">
+                <!-- Foto Claudio placeholder -->
+                <div style="width:56px;height:56px;background:#1e1e1e;border:1px solid #2e2e2e;border-radius:50%;display:inline-block;line-height:56px;text-align:center;">
+                  <span style="font-family:Georgia,serif;font-size:20px;color:#c8a97a;">C</span>
+                </div>
+              </td>
+              <td style="vertical-align:middle;">
+                <p style="margin:0 0 2px;font-family:Georgia,serif;font-size:17px;color:#e8e0d4;">Claudio Alecrim</p>
+                <p style="margin:0 0 2px;font-family:Arial,sans-serif;font-size:12px;color:#4a4035;">Mentor de Homens · Governo Pessoal</p>
+                <p style="margin:0;font-family:Arial,sans-serif;font-size:12px;color:#c8a97a;">claudioalecrim.com.br</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ══ RODAPÉ ══ -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="background:#0a0a0a;border-top:1px solid #1e1e1e;padding:20px 40px;">
+        <p style="margin:0;font-family:Arial,sans-serif;font-size:11px;color:#3a3030;text-align:center;line-height:1.7;">
+          Claudio Alecrim · Diagnóstico de Perdão<br>
+          claudioalecrim.com.br
+        </p>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<!--
+══════════════════════════════════════════════════════
+REFERÊNCIA DE VARIÁVEIS DINÂMICAS
+══════════════════════════════════════════════════════
+
+{{NOME}}                    → Nome do respondente
+
+— BLOCO 1: Perfil de Intensidade —
+{{PERFIL_NOME}}             → LIVRE / PROCESSANDO / PRESO / ACORRENTADO
+{{PERFIL_DESCRICAO}}        → Descrição resumida do perfil (2–3 linhas)
+{{PERFIL_PRATICA}}          → Como esse perfil opera em comportamentos reais
+
+— BLOCO 2: Vínculo Ferido —
+{{VINCULO_PRIMARIO}}        → Figura de Autoridade / Vínculos Próximos /
+                              Relacionamento Íntimo / Contexto e Instituições /
+                              Perdão de Si Mesmo
+{{VINCULO_PRIMARIO_DESC}}   → O que esse vínculo diz sobre a origem da ferida
+{{VINCULO_SECUNDARIO}}      → Segundo vínculo em pontuação
+{{VINCULO_SECUNDARIO_DESC}} → Descrição breve
+{{VINCULO_LEITURA}}         → Interpretação combinada dos dois vínculos
+
+— BLOCO 3: Custo —
+{{CUSTO_TEXTO}}             → Parágrafo confrontador: o peso que a falta de perdão gera
+{{CUSTO_RELACOES}}          → Impacto em relações (1–2 frases)
+{{CUSTO_DECISOES}}          → Impacto em decisões (1–2 frases)
+{{CUSTO_ESPIRITUALIDADE}}   → Impacto na vida espiritual (1–2 frases)
+
+— BLOCO 4: Virada —
+{{VIRADA_TEXTO}}            → O que muda quando o peso vai embora (parágrafo)
+{{VIRADA_FRASE_DESTAQUE}}   → Frase de impacto em itálico âmbar
+
+— BLOCO 5: CTA fixo —
+→ Link da Mesa de Governo (fixo, não é variável)
+
+══════════════════════════════════════════════════════
+PERFIS × VARIÁVEIS — REFERÊNCIA RÁPIDA
+══════════════════════════════════════════════════════
+
+LIVRE (0–25%)
+  PERFIL_NOME: Livre
+  PERFIL_DESCRICAO: Você passou pelo processo ou está em boa posição.
+  A ferida pode existir, mas não governa suas escolhas.
+
+PROCESSANDO (26–50%)
+  PERFIL_NOME: Processando
+  PERFIL_DESCRICAO: Você sabe que tem algo a resolver e está em movimento.
+  O bloqueio existe, mas ainda não está controlando tudo.
+
+PRESO (51–75%)
+  PERFIL_NOME: Preso
+  PERFIL_DESCRICAO: Há um peso real aqui. Você carrega isso há mais tempo
+  do que admite — e ele aparece onde você menos espera.
+
+ACORRENTADO (76–100%)
+  PERFIL_NOME: Acorrentado
+  PERFIL_DESCRICAO: O bloqueio de perdão está ditando padrões importantes
+  da sua vida. Você não precisa de mais informação — precisa de movimento.
+
+══════════════════════════════════════════════════════
+-->
+
+</body>
 </html>
