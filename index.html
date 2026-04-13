@@ -3,304 +3,1000 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seu Diagnóstico de Perdão — Claudio Alecrim</title>
+<title>Diagnóstico de Perdão — Claudio Alecrim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:          #0a0a0a;
+    --card:        #111111;
+    --card-alt:    #0d0d0d;
+    --borda:       #1e1e1e;
+    --borda-forte: #2e2e2e;
+    --amber:       #c8a97a;
+    --amber-hover: #d4b88a;
+    --texto:       #e8e0d4;
+    --texto-med:   #9a8a7a;
+    --texto-fraco: #4a4035;
+    --texto-sub:   #5a4a3a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--card-alt);
+    border-bottom: 1px solid var(--borda);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-marca .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-med);
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 400;
+  }
+
+  .header-marca .nome {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+  }
+
+  .header-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 5px 14px;
+    opacity: 0.7;
+  }
+
+  /* ── Progress ── */
+  .progress-bar {
+    height: 2px;
+    background: var(--borda);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--amber);
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* ── Main ── */
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+
+  /* ── Steps ── */
+  .step { display: none; animation: fadeIn 0.5s ease; }
+  .step.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Boas-vindas ── */
+  .bv-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 6px 16px;
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+
+  .bv-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--texto);
+    margin-bottom: 20px;
+  }
+
+  .bv-titulo em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .bv-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--texto-med);
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+
+  .bv-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .bv-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    padding: 16px;
+  }
+
+  .bv-card .bc-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-fraco);
+    margin-bottom: 6px;
+  }
+
+  .bv-card .bc-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--texto-med);
+    line-height: 1.4;
+  }
+
+  .aviso-email {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+
+  .aviso-email p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--texto-med);
+  }
+
+  .aviso-email p strong {
+    color: var(--texto);
+    font-weight: 500;
+  }
+
+  /* ── Step header ── */
+  .step-header {
+    margin-bottom: 36px;
+  }
+
+  .step-tag {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  .step-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--texto);
+    margin-bottom: 10px;
+  }
+
+  .step-header p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--texto-med);
+  }
+
+  /* ── Campos de formulário ── */
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-fraco);
+    margin-bottom: 8px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--texto);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .field input:focus {
+    border-color: var(--amber);
+  }
+
+  .field input::placeholder {
+    color: var(--texto-fraco);
+  }
+
+  /* ── Perguntas de múltipla escolha ── */
+  .pergunta {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .pergunta:last-child {
+    border-bottom: none;
+  }
+
+  .pergunta-num {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--texto-fraco);
+    margin-bottom: 8px;
+  }
+
+  .pergunta-texto {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--texto);
+    margin-bottom: 18px;
+    font-weight: 400;
+  }
+
+  .opcoes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .opcao-item {
+    position: relative;
+  }
+
+  .opcao-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .opcao-item label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--texto-med);
+    font-weight: 300;
+  }
+
+  .opcao-item label:hover {
+    border-color: var(--borda-forte);
+    color: var(--texto);
+  }
+
+  .opcao-item input:checked + label {
+    border-color: var(--amber);
+    background: #1a1408;
+    color: var(--texto);
+  }
+
+  .opcao-item label .letra {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--texto-fraco);
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+
+  .opcao-item input:checked + label .letra {
+    background: var(--amber);
+    color: var(--bg);
+  }
+
+  /* ── Botões ── */
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    flex: 1;
+    background: var(--amber);
+    color: var(--bg);
+    padding: 16px 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+  }
+
+  .btn-primary:hover { background: var(--amber-hover); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--texto-med);
+    border: 1px solid var(--borda-forte);
+    padding: 15px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+
+  .btn-inicio {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--bg);
+    padding: 18px 48px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .btn-inicio:hover { background: var(--amber-hover); }
+
+  /* ── Enviando ── */
+  .enviando {
+    display: none;
+    text-align: center;
+    padding: 80px 20px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--borda);
+    border-top-color: var(--amber);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 28px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .enviando h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--texto);
+    margin-bottom: 10px;
+  }
+
+  .enviando p {
+    font-size: 15px;
+    color: var(--texto-med);
+    line-height: 1.7;
+  }
+
+  /* ── Sucesso ── */
+  .sucesso {
+    display: none;
+    text-align: center;
+    padding: 80px 20px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  .sucesso .check {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--amber);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--amber);
+    margin: 0 auto 28px;
+  }
+
+  .sucesso h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--texto);
+    margin-bottom: 14px;
+  }
+
+  .sucesso p {
+    font-size: 16px;
+    color: var(--texto-med);
+    line-height: 1.8;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  /* ── Rodapé ── */
+  .rodape {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--borda);
+    font-size: 11px;
+    color: var(--texto-fraco);
+    letter-spacing: 1px;
+  }
+
+  /* ── Responsivo ── */
+  @media (max-width: 540px) {
+    .bv-cards { grid-template-columns: 1fr; }
+    .bv-titulo { font-size: 32px; }
+    .header { padding: 16px 20px; }
+    .header-tag { display: none; }
+    .main { padding: 36px 20px 80px; }
+    .nav-buttons { flex-direction: column-reverse; }
+    .btn-secondary { width: 100%; text-align: center; }
+  }
+</style>
 </head>
-<body style="margin:0;padding:20px 0;background:#0a0a0a;font-family:'Inter',Arial,sans-serif;">
+<body>
 
-<div style="max-width:620px;margin:0 auto;background:#111111;border:1px solid #1e1e1e;">
+<!-- ── Header ── -->
+<header class="header">
+  <div class="header-marca">
+    <span class="label">Claudio Alecrim</span>
+    <span class="nome">Mentor de Homens</span>
+  </div>
 
-  <!-- ══ CABEÇALHO ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="background:#0d0d0d;padding:28px 40px 24px;border-bottom:3px solid #c8a97a;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td style="vertical-align:middle;">
-              <p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a4035;">Diagnóstico de Perdão</p>
-              <p style="margin:0;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">Claudio Alecrim</p>
-            </td>
-            <td style="text-align:right;vertical-align:middle;">
-              <!-- Logo placeholder: substituir src pelo base64 ou URL do logo -->
-              <div style="width:56px;height:56px;background:#1e1e1e;border:1px solid #2e2e2e;border-radius:4px;display:inline-block;line-height:56px;text-align:center;">
-                <span style="font-family:Georgia,serif;font-size:18px;color:#c8a97a;">C</span>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+</header>
 
-  <!-- ══ SAUDAÇÃO ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:32px 40px 0;">
-        <p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a4035;">Seu resultado</p>
-        <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-size:26px;font-weight:400;line-height:1.3;color:#e8e0d4;">{{NOME}}, seu diagnóstico está aqui.</h1>
-        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">O que você vai ler a seguir não é uma sentença — é um espelho. Não existe resposta certa ou errada. Existe o que você realmente está carregando. E a única coisa que importa agora é o que você vai fazer com isso.</p>
-        <div style="height:1px;background:#1e1e1e;"></div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ BLOCO 1: PERFIL DE INTENSIDADE ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:32px 40px 0;">
-        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">Nível de Bloqueio</p>
-        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">Seu perfil de perdão</h2>
-        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">Como a falta de perdão opera no seu dia a dia</p>
-
-        <!-- Badge do perfil -->
-        <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-left:4px solid #c8a97a;padding:20px 24px;margin-bottom:20px;">
-          <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a4035;">Seu perfil</p>
-          <p style="margin:0 0 12px;font-family:Georgia,serif;font-size:28px;font-style:italic;color:#c8a97a;">{{PERFIL_NOME}}</p>
-          <!-- Ex: LIVRE / PROCESSANDO / PRESO / ACORRENTADO -->
-          <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">{{PERFIL_DESCRICAO}}</p>
-        </div>
-
-        <!-- O que esse perfil significa na prática -->
-        <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:18px 22px;margin-bottom:24px;">
-          <p style="margin:0 0 8px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">O que isso significa na prática</p>
-          <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">{{PERFIL_PRATICA}}</p>
-        </div>
-
-        <div style="height:1px;background:#1e1e1e;"></div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ BLOCO 2: VÍNCULO FERIDO ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:32px 40px 0;">
-        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">Onde está concentrado</p>
-        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">O vínculo mais afetado</h2>
-        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">O tipo de relação onde a ferida costuma estar mais ativa</p>
-
-        <!-- Cards de vínculo — 2 colunas -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
-          <tr>
-            <td width="50%" style="padding-right:8px;vertical-align:top;">
-              <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-top:3px solid #c8a97a;padding:18px 20px;">
-                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Vínculo Primário</p>
-                <p style="margin:0 0 10px;font-family:Georgia,serif;font-size:18px;color:#e8e0d4;">{{VINCULO_PRIMARIO}}</p>
-                <!-- Ex: Figura de Autoridade -->
-                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.65;color:#7a6a5a;">{{VINCULO_PRIMARIO_DESC}}</p>
-              </div>
-            </td>
-            <td width="50%" style="padding-left:8px;vertical-align:top;">
-              <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-top:3px solid #5a4a3a;padding:18px 20px;">
-                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Vínculo Secundário</p>
-                <p style="margin:0 0 10px;font-family:Georgia,serif;font-size:18px;color:#e8e0d4;">{{VINCULO_SECUNDARIO}}</p>
-                <!-- Ex: Relacionamento Íntimo -->
-                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.65;color:#7a6a5a;">{{VINCULO_SECUNDARIO_DESC}}</p>
-              </div>
-            </td>
-          </tr>
-        </table>
-
-        <!-- O que o vínculo revela -->
-        <div style="background:#0d0d0d;border:1px solid #1e1e1e;border-left:4px solid #c8a97a;padding:18px 22px;margin-bottom:24px;">
-          <p style="margin:0 0 4px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">O que isso revela</p>
-          <p style="margin:0;font-family:Arial,sans-serif;font-size:16px;line-height:1.75;color:#9a8a7a;">{{VINCULO_LEITURA}}</p>
-        </div>
-
-        <div style="height:1px;background:#1e1e1e;"></div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ BLOCO 3: O QUE ESTÁ CUSTANDO ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:32px 40px 0;">
-        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">O preço que você paga</p>
-        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">O que esse bloqueio está custando</h2>
-        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">Ninguém carrega esse peso de graça — sempre há um custo real</p>
-
-        <div style="border-left:3px solid #c8a97a;padding:20px 24px;background:#0d0d0d;margin-bottom:16px;">
-          <p style="margin:0;font-family:Georgia,serif;font-size:18px;line-height:1.75;color:#e8e0d4;font-style:italic;">{{CUSTO_TEXTO}}</p>
-        </div>
-
-        <!-- Áreas afetadas -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
-          <tr>
-            <td width="33%" style="padding-right:6px;vertical-align:top;">
-              <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:14px 16px;text-align:center;">
-                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Relações</p>
-                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#9a8a7a;">{{CUSTO_RELACOES}}</p>
-              </div>
-            </td>
-            <td width="33%" style="padding:0 3px;vertical-align:top;">
-              <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:14px 16px;text-align:center;">
-                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Decisões</p>
-                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#9a8a7a;">{{CUSTO_DECISOES}}</p>
-              </div>
-            </td>
-            <td width="33%" style="padding-left:6px;vertical-align:top;">
-              <div style="background:#0a0a0a;border:1px solid #1e1e1e;padding:14px 16px;text-align:center;">
-                <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a4035;">Espiritualidade</p>
-                <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#9a8a7a;">{{CUSTO_ESPIRITUALIDADE}}</p>
-              </div>
-            </td>
-          </tr>
-        </table>
-
-        <div style="height:1px;background:#1e1e1e;"></div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ BLOCO 4: O OUTRO LADO ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:32px 40px 0;">
-        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">O contraste</p>
-        <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">O que muda quando esse peso vai embora</h2>
-        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#5a5050;font-style:italic;">Perdão não é esquecimento — é a decisão de não deixar o passado governar o presente</p>
-
-        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:16px;line-height:1.8;color:#9a8a7a;">{{VIRADA_TEXTO}}</p>
-
-        <!-- Frase de destaque -->
-        <div style="background:#0d0d0d;border:1px solid #2a2a2a;padding:24px;margin-bottom:24px;text-align:center;">
-          <p style="margin:0;font-family:Georgia,serif;font-size:20px;font-style:italic;line-height:1.6;color:#c8a97a;">{{VIRADA_FRASE_DESTAQUE}}</p>
-        </div>
-
-        <div style="height:1px;background:#1e1e1e;"></div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ BLOCO 5: PRÓXIMO PASSO (PITCH) ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:32px 40px 0;">
-        <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c8a97a;">O próximo passo</p>
-        <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:22px;font-weight:400;color:#e8e0d4;">Isso tem solução — e ela tem um caminho.</h2>
-
-        <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:16px;line-height:1.8;color:#9a8a7a;">Diagnóstico sem movimento é só mais uma informação que você vai carregar. O perdão é um processo — e processos precisam de estrutura, de acompanhamento, e de alguém que já entende o que está acontecendo dentro de você.</p>
-
-        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:16px;line-height:1.8;color:#9a8a7a;">Na <strong style="color:#e8e0d4;">Mesa de Governo</strong> você vai entrar em contato com uma dinâmica de perdão que vai te dar a primeira respiração real — com outros homens que estão no mesmo processo e com suporte direto de quem entende esse caminho.</p>
-
-        <!-- CTA -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
-          <tr>
-            <td style="text-align:center;padding:8px 0;">
-              <a href="https://claudioalecrim.com.br/mesa-de-governo"
-                 style="display:inline-block;background:#c8a97a;color:#0a0a0a;font-family:Arial,sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 40px;font-weight:700;">
-                Quero participar da Mesa de Governo
-              </a>
-            </td>
-          </tr>
-        </table>
-
-        <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#5a5050;text-align:center;">Essa não é uma solução rápida. É um processo real.<br>Mas começa com uma decisão agora.</p>
-
-        <div style="height:1px;background:#1e1e1e;"></div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ ASSINATURA ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="padding:28px 40px 32px;">
-        <div style="background:#0d0d0d;border:1px solid #1e1e1e;padding:20px 24px;">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td style="padding-right:16px;vertical-align:middle;">
-                <!-- Foto Claudio placeholder -->
-                <div style="width:56px;height:56px;background:#1e1e1e;border:1px solid #2e2e2e;border-radius:50%;display:inline-block;line-height:56px;text-align:center;">
-                  <span style="font-family:Georgia,serif;font-size:20px;color:#c8a97a;">C</span>
-                </div>
-              </td>
-              <td style="vertical-align:middle;">
-                <p style="margin:0 0 2px;font-family:Georgia,serif;font-size:17px;color:#e8e0d4;">Claudio Alecrim</p>
-                <p style="margin:0 0 2px;font-family:Arial,sans-serif;font-size:12px;color:#4a4035;">Mentor de Homens · Governo Pessoal</p>
-                <p style="margin:0;font-family:Arial,sans-serif;font-size:12px;color:#c8a97a;">claudioalecrim.com.br</p>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ══ RODAPÉ ══ -->
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-      <td style="background:#0a0a0a;border-top:1px solid #1e1e1e;padding:20px 40px;">
-        <p style="margin:0;font-family:Arial,sans-serif;font-size:11px;color:#3a3030;text-align:center;line-height:1.7;">
-          Claudio Alecrim · Diagnóstico de Perdão<br>
-          claudioalecrim.com.br
-        </p>
-      </td>
-    </tr>
-  </table>
-
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
 </div>
 
-<!--
-══════════════════════════════════════════════════════
-REFERÊNCIA DE VARIÁVEIS DINÂMICAS
-══════════════════════════════════════════════════════
+<main class="main">
 
-{{NOME}}                    → Nome do respondente
+  <!-- ══ STEP 0: BOAS-VINDAS ══ -->
+  <div class="step active" id="step-0">
+    <span class="bv-tag">Diagnóstico Pessoal</span>
+    <h1 class="bv-titulo">O que você ainda<br>está <em>carregando?</em></h1>
+    <p class="bv-desc">
+      Este diagnóstico foi criado para te dar clareza sobre algo que a maioria dos homens
+      carrega sem nomear. Não existe resposta certa ou errada aqui.
+      O único beneficiado por suas respostas é você mesmo.
+    </p>
 
-— BLOCO 1: Perfil de Intensidade —
-{{PERFIL_NOME}}             → LIVRE / PROCESSANDO / PRESO / ACORRENTADO
-{{PERFIL_DESCRICAO}}        → Descrição resumida do perfil (2–3 linhas)
-{{PERFIL_PRATICA}}          → Como esse perfil opera em comportamentos reais
+    <div class="aviso-email">
+      <p>
+        <strong>Sua devolutiva completa será entregue por email</strong> no endereço
+        que você informar na próxima tela. Responda com sinceridade,
+        sem filtrar pelo que acha que deveria sentir. Quanto mais honesto você for,
+        mais preciso será o diagnóstico.
+      </p>
+    </div>
 
-— BLOCO 2: Vínculo Ferido —
-{{VINCULO_PRIMARIO}}        → Figura de Autoridade / Vínculos Próximos /
-                              Relacionamento Íntimo / Contexto e Instituições /
-                              Perdão de Si Mesmo
-{{VINCULO_PRIMARIO_DESC}}   → O que esse vínculo diz sobre a origem da ferida
-{{VINCULO_SECUNDARIO}}      → Segundo vínculo em pontuação
-{{VINCULO_SECUNDARIO_DESC}} → Descrição breve
-{{VINCULO_LEITURA}}         → Interpretação combinada dos dois vínculos
+    <button class="btn-inicio" onclick="irParaStep(1)">Começar o diagnóstico</button>
+  </div>
 
-— BLOCO 3: Custo —
-{{CUSTO_TEXTO}}             → Parágrafo confrontador: o peso que a falta de perdão gera
-{{CUSTO_RELACOES}}          → Impacto em relações (1–2 frases)
-{{CUSTO_DECISOES}}          → Impacto em decisões (1–2 frases)
-{{CUSTO_ESPIRITUALIDADE}}   → Impacto na vida espiritual (1–2 frases)
+  <!-- ══ STEP 1: DADOS PESSOAIS ══ -->
+  <div class="step" id="step-1">
+    <div class="step-header">
+      <div class="step-tag">Etapa 1 de 3 · Seus dados</div>
+      <h2>Para quem vamos<br>enviar o resultado?</h2>
+      <p>
+        Preencha com seus dados reais. Sua devolutiva é pessoal e será
+        enviada exclusivamente para o email informado abaixo.
+      </p>
+    </div>
 
-— BLOCO 4: Virada —
-{{VIRADA_TEXTO}}            → O que muda quando o peso vai embora (parágrafo)
-{{VIRADA_FRASE_DESTAQUE}}   → Frase de impacto em itálico âmbar
+    <div class="field">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" placeholder="Como prefere ser chamado" autocomplete="off">
+    </div>
 
-— BLOCO 5: CTA fixo —
-→ Link da Mesa de Governo (fixo, não é variável)
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="email@exemplo.com" autocomplete="off">
+    </div>
 
-══════════════════════════════════════════════════════
-PERFIS × VARIÁVEIS — REFERÊNCIA RÁPIDA
-══════════════════════════════════════════════════════
+    <div class="field">
+      <label for="telefone">WhatsApp</label>
+      <input type="tel" id="telefone" placeholder="(00) 00000-0000" autocomplete="off">
+    </div>
 
-LIVRE (0–25%)
-  PERFIL_NOME: Livre
-  PERFIL_DESCRICAO: Você passou pelo processo ou está em boa posição.
-  A ferida pode existir, mas não governa suas escolhas.
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="irParaStep(0)">Voltar</button>
+      <button class="btn-primary" onclick="validarStep1()">Continuar</button>
+    </div>
+  </div>
 
-PROCESSANDO (26–50%)
-  PERFIL_NOME: Processando
-  PERFIL_DESCRICAO: Você sabe que tem algo a resolver e está em movimento.
-  O bloqueio existe, mas ainda não está controlando tudo.
+  <!-- ══ STEP 2: BLOCO 1 — INTENSIDADE (10 perguntas) ══ -->
+  <div class="step" id="step-2">
+    <div class="step-header">
+      <div class="step-tag">Etapa 2 de 3 · Parte 1</div>
+      <h2>Responda a partir<br>da sua realidade.</h2>
+      <p>
+        Não existe resposta certa. Escolha a opção que mais descreve
+        o que você realmente sente, não o que acha que deveria sentir.
+      </p>
+    </div>
 
-PRESO (51–75%)
-  PERFIL_NOME: Preso
-  PERFIL_DESCRICAO: Há um peso real aqui. Você carrega isso há mais tempo
-  do que admite — e ele aparece onde você menos espera.
+    <div id="perguntas-intensidade"></div>
 
-ACORRENTADO (76–100%)
-  PERFIL_NOME: Acorrentado
-  PERFIL_DESCRICAO: O bloqueio de perdão está ditando padrões importantes
-  da sua vida. Você não precisa de mais informação — precisa de movimento.
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="irParaStep(1)">Voltar</button>
+      <button class="btn-primary" onclick="validarStep2()">Continuar</button>
+    </div>
+  </div>
 
-══════════════════════════════════════════════════════
--->
+  <!-- ══ STEP 3: BLOCO 2 — VÍNCULO (8 perguntas) ══ -->
+  <div class="step" id="step-3">
+    <div class="step-header">
+      <div class="step-tag">Etapa 3 de 3 · Parte 2</div>
+      <h2>Mais alguns cenários<br>do dia a dia.</h2>
+      <p>
+        Continue respondendo com o que realmente acontece em você,
+        não com o que gostaria que acontecesse.
+      </p>
+    </div>
+
+    <div id="perguntas-vinculo"></div>
+
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="irParaStep(2)">Voltar</button>
+      <button class="btn-primary" onclick="enviarFormulario()">Enviar meu diagnóstico</button>
+    </div>
+  </div>
+
+  <!-- ══ ENVIANDO ══ -->
+  <div class="enviando" id="enviando">
+    <div class="spinner"></div>
+    <h2>Processando seu diagnóstico...</h2>
+    <p>Estamos lendo suas respostas e preparando<br>sua devolutiva personalizada.</p>
+  </div>
+
+  <!-- ══ SUCESSO ══ -->
+  <div class="sucesso" id="sucesso">
+    <div class="check">✓</div>
+    <h2>Diagnóstico enviado.</h2>
+    <p>
+      Em instantes você receberá um email com sua devolutiva completa.
+      Verifique também a caixa de spam.
+    </p>
+  </div>
+
+</main>
+
+<footer class="rodape">
+  Claudio Alecrim · claudioalecrim.com.br
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════
+// PERGUNTAS
+// ════════════════════════════════════════════════════════════
+
+const INTENSIDADE = [
+  {
+    id: 'I1',
+    texto: 'Quando você lembra de uma situação onde foi tratado de forma injusta, o que costuma acontecer dentro de você?',
+    opcoes: [
+      'Consigo lembrar sem que isso me afete muito hoje',
+      'Ainda sinto algo, mas não deixo que domine',
+      'O peso volta com bastante força quando a memória vem',
+      'É difícil pensar nisso sem que o humor mude completamente',
+    ]
+  },
+  {
+    id: 'I2',
+    texto: 'Se você soubesse que alguém que te prejudicou no passado está passando por um momento difícil agora, qual seria sua reação mais honesta?',
+    opcoes: [
+      'Sentiria empatia genuína, sem misturar com o que aconteceu',
+      'Tentaria sentir empatia, mas haveria um conflito interno',
+      'Seria difícil não sentir que é um acerto de contas',
+      'Sentiria satisfação, mesmo que não admitisse isso facilmente',
+    ]
+  },
+  {
+    id: 'I3',
+    texto: 'Quando alguém te decepciona de um jeito que lembra uma situação do passado, como você costuma reagir?',
+    opcoes: [
+      'Consigo separar, o que é agora é agora',
+      'Percebo que reajo um pouco mais do que a situação pede',
+      'A reação é quase automática e mais intensa do que eu gostaria',
+      'Fico em guarda por muito tempo depois, mesmo quando passa',
+    ]
+  },
+  {
+    id: 'I4',
+    texto: 'Há alguém, vivo ou não, com quem você evita mentalmente se envolver, mesmo que não haja contato real?',
+    opcoes: [
+      'Não, consigo pensar nessas pessoas com relativa neutralidade',
+      'Há alguém, mas o desconforto é leve e passageiro',
+      'Sim, e quando o nome vem à mente, prefiro mudar o pensamento',
+      'Sim, e isso acontece com frequência sem eu precisar provocar',
+    ]
+  },
+  {
+    id: 'I5',
+    texto: 'Quando você conta para alguém uma história onde foi prejudicado, qual é o tom que aparece?',
+    opcoes: [
+      'Factual, consigo contar sem carga emocional pesada',
+      'Ainda tem emoção, mas não domina a narrativa',
+      'A mágoa está presente e as pessoas percebem',
+      'A história ainda tem o mesmo peso de quando aconteceu',
+    ]
+  },
+  {
+    id: 'I6',
+    texto: 'Em situações onde você precisa trabalhar ou conviver com alguém que te fez mal no passado, como você funciona?',
+    opcoes: [
+      'Consigo ser profissional e até genuíno sem esforço excessivo',
+      'Funciono bem, mas exige um esforço consciente',
+      'É pesado e afeta minha performance ou disposição',
+      'Evito esse tipo de situação sempre que posso',
+    ]
+  },
+  {
+    id: 'I7',
+    texto: 'Quando você ora ou busca a Deus, há alguma área da sua vida onde sente um bloqueio ou distância que não consegue explicar bem?',
+    opcoes: [
+      'Não, minha vida espiritual flui sem esse tipo de obstáculo',
+      'Às vezes, mas não identifico claramente de onde vem',
+      'Sim, e tenho uma suspeita de onde esse bloqueio está',
+      'Sim, e é uma área que já parei de levar para a oração',
+    ]
+  },
+  {
+    id: 'I8',
+    texto: 'Quando você conquista algo bom, qual pensamento sobre o passado tem mais chance de aparecer?',
+    opcoes: [
+      'Gratidão, o que passei fez parte de quem eu me tornei',
+      'Alívio de ter superado, mas sem muito peso',
+      'Uma vontade de que certas pessoas soubessem do que alcancei',
+      'Uma mistura de conquista e amargura que não desaparece completamente',
+    ]
+  },
+  {
+    id: 'I9',
+    texto: 'Se alguém próximo a você soubesse de tudo que você carrega sobre certas situações do passado, o que você acha que ele diria?',
+    opcoes: [
+      'Que você já superou bem e segue em frente',
+      'Que você ainda tem resquícios, mas está lidando',
+      'Que você carrega mais do que demonstra',
+      'Que esse peso está te afetando mais do que você admite',
+    ]
+  },
+  {
+    id: 'I10',
+    texto: 'Quando o assunto de perdão surge numa conversa ou pregação, qual é sua reação interna mais honesta?',
+    opcoes: [
+      'Tranquilidade, é um território que já trabalhei',
+      'Reflexão, sei que tenho caminho, mas sem peso excessivo',
+      'Desconforto, sinto que o assunto é mais pessoal do que gostaria',
+      'Resistência, prefiro não aprofundar esse tema',
+    ]
+  },
+];
+
+const VINCULO = [
+  {
+    id: 'V1',
+    texto: 'Quando você precisa se colocar sob a liderança de alguém, um líder, mentor ou pastor, qual reação aparece primeiro?',
+    opcoes: [
+      'Abertura natural, sem reservas significativas',
+      'Avalio antes de confiar, mas sem tensão excessiva',
+      'Há uma vigilância automática que precisa de tempo para diminuir',
+      'Prefiro manter distância ou assumir o controle da situação',
+    ]
+  },
+  {
+    id: 'V2',
+    texto: 'Numa relação próxima, quando você sente que a outra pessoa pode te decepcionar, o que costuma fazer?',
+    opcoes: [
+      'Continuo presente sem antecipar o pior',
+      'Fico um pouco mais atento, mas sem fechar',
+      'Crio uma distância sutil como proteção',
+      'Me afasto ou coloco condições antes que algo aconteça',
+    ]
+  },
+  {
+    id: 'V3',
+    texto: 'Quando um amigo ou pessoa do seu círculo age de forma que parece deslealdade, mesmo que pequena, como você lida?',
+    opcoes: [
+      'Converso diretamente e sigo em frente sem guardar',
+      'Fico chateado mas resolvo sem arrastar',
+      'Levo tempo para voltar ao mesmo nível de confiança',
+      'A relação muda de patamar, dificilmente volta ao que era',
+    ]
+  },
+  {
+    id: 'V4',
+    texto: 'Há decisões que você tomou no passado que ainda julga com dureza, mesmo que já tenham sido superadas em termos práticos?',
+    opcoes: [
+      'Não, consigo ver o passado com compreensão',
+      'Algumas situações ainda pesam, mas não me dominam',
+      'Sim, volto a essas decisões com frequência e me cobro',
+      'Há erros que ainda sinto que não me perdoei de verdade',
+    ]
+  },
+  {
+    id: 'V5',
+    texto: 'Como você se sente hoje em relação a ambientes como igrejas, empresas ou comunidades onde teve experiências negativas?',
+    opcoes: [
+      'Consigo me envolver em novos ambientes sem carregar o passado',
+      'Entro com cautela, mas sem fechamento',
+      'Há uma resistência que preciso vencer conscientemente',
+      'Prefiro manter distância desse tipo de ambiente',
+    ]
+  },
+  {
+    id: 'V6',
+    texto: 'Quando você comete um erro que afeta alguém que importa para você, quanto tempo leva para se perdoar depois de ter reparado a situação?',
+    opcoes: [
+      'Relativamente rápido, erro, reparo, sigo',
+      'Levo algum tempo, mas chego lá',
+      'Carrego a culpa por muito mais tempo do que seria necessário',
+      'Há erros que sinto que ainda estou pagando, mesmo depois de resolvidos',
+    ]
+  },
+  {
+    id: 'V7',
+    texto: 'Quando alguém que te importa muito age de forma que te machuca, qual é o padrão que aparece em você?',
+    opcoes: [
+      'Consigo falar, resolver e manter a proximidade',
+      'Preciso de um tempo, mas volto sem guardar rancor',
+      'O nível de intimidade cai e demora a se recuperar',
+      'A ferida fica, mesmo que a relação continue funcionando por fora',
+    ]
+  },
+  {
+    id: 'V8',
+    texto: 'Se você pudesse dar uma nota para o quanto confia em estruturas coletivas hoje, comparado a como era antes de alguma experiência difícil, o que diria?',
+    opcoes: [
+      'Minha confiança não foi abalada de forma significativa',
+      'Fiquei mais seletivo, mas ainda me envolvo com abertura',
+      'Minha confiança caiu bastante e não voltou ao mesmo nível',
+      'Prefiro relações individuais, estruturas coletivas me colocam em guarda',
+    ]
+  },
+];
+
+// ════════════════════════════════════════════════════════════
+// RENDERIZAÇÃO
+// ════════════════════════════════════════════════════════════
+
+function renderPerguntas(perguntas, containerId) {
+  const letras = ['A', 'B', 'C', 'D'];
+  const container = document.getElementById(containerId);
+  container.innerHTML = perguntas.map((p, i) => `
+    <div class="pergunta">
+      <div class="pergunta-num">Questão ${i + 1} de ${perguntas.length}</div>
+      <div class="pergunta-texto">${p.texto}</div>
+      <div class="opcoes-lista">
+        ${p.opcoes.map((op, j) => `
+          <div class="opcao-item">
+            <input type="radio" name="${p.id}" id="${p.id}_${letras[j]}" value="${j}">
+            <label for="${p.id}_${letras[j]}">
+              <span class="letra">${letras[j]}</span>
+              ${op}
+            </label>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+renderPerguntas(INTENSIDADE, 'perguntas-intensidade');
+renderPerguntas(VINCULO, 'perguntas-vinculo');
+
+// ════════════════════════════════════════════════════════════
+// NAVEGAÇÃO
+// ════════════════════════════════════════════════════════════
+
+let currentStep = 0;
+const TOTAL = 3;
+
+function irParaStep(n) {
+  document.getElementById(`step-${currentStep}`).classList.remove('active');
+  currentStep = n;
+  const el = document.getElementById(`step-${n}`);
+  if (el) {
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.getElementById('progressFill').style.width =
+    currentStep === 0 ? '0%' : ((currentStep / TOTAL) * 100) + '%';
+}
+
+// ════════════════════════════════════════════════════════════
+// VALIDAÇÕES
+// ════════════════════════════════════════════════════════════
+
+function validarStep1() {
+  const nome  = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const tel   = document.getElementById('telefone').value.trim();
+  if (!nome) { alert('Por favor, informe seu nome.'); return; }
+  if (!email || !email.includes('@')) { alert('Por favor, informe um email válido.'); return; }
+  if (!tel) { alert('Por favor, informe seu WhatsApp.'); return; }
+  irParaStep(2);
+}
+
+function validarStep2() {
+  const naoRespondidas = INTENSIDADE.filter(
+    p => !document.querySelector(`input[name="${p.id}"]:checked`)
+  );
+  if (naoRespondidas.length > 0) {
+    alert(`Ainda ${naoRespondidas.length === 1 ? 'falta 1 resposta' : `faltam ${naoRespondidas.length} respostas`}. Por favor, responda todas as questões.`);
+    return;
+  }
+  irParaStep(3);
+}
+
+// ════════════════════════════════════════════════════════════
+// CÁLCULO DE PERFIS
+// ════════════════════════════════════════════════════════════
+
+function calcularPerfil(respostas) {
+  // Intensidade: soma de I1 a I10 (0-3 cada, total 0-30)
+  let somaIntensidade = 0;
+  INTENSIDADE.forEach(p => {
+    somaIntensidade += parseInt(respostas[p.id] || 0);
+  });
+
+  let perfil;
+  if (somaIntensidade <= 7)       perfil = 'LIVRE';
+  else if (somaIntensidade <= 15) perfil = 'PROCESSANDO';
+  else if (somaIntensidade <= 22) perfil = 'PRESO';
+  else                             perfil = 'ACORRENTADO';
+
+  // Vínculos: pontuação por categoria
+  const v = {};
+  VINCULO.forEach(p => {
+    v[p.id] = parseInt(respostas[p.id] || 0);
+  });
+
+  const scores = {
+    'Figura de Autoridade':    v['V1'] + v['V4'] / 2 + v['V8'] / 2,
+    'Relacionamento Íntimo':   v['V2'] + v['V7'] / 2,
+    'Vínculos Próximos':       v['V3'] + v['V7'] / 2,
+    'Contexto e Instituições': v['V5'] + v['V8'] / 2,
+    'Perdão de Si Mesmo':      v['V6'] + v['V4'] / 2,
+  };
+
+  const ordenado = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const vinculoPrimario   = ordenado[0][0];
+  const vinculoSecundario = ordenado[1][0];
+
+  return { perfil, somaIntensidade, vinculoPrimario, vinculoSecundario, scores };
+}
+
+// ════════════════════════════════════════════════════════════
+// ENVIO
+// ════════════════════════════════════════════════════════════
+
+async function enviarFormulario() {
+  const naoRespondidas = VINCULO.filter(
+    p => !document.querySelector(`input[name="${p.id}"]:checked`)
+  );
+  if (naoRespondidas.length > 0) {
+    alert(`Ainda ${naoRespondidas.length === 1 ? 'falta 1 resposta' : `faltam ${naoRespondidas.length} respostas`}. Por favor, responda todas as questões.`);
+    return;
+  }
+
+  // Coleta todas as respostas
+  const respostas = {};
+  [...INTENSIDADE, ...VINCULO].forEach(p => {
+    const checked = document.querySelector(`input[name="${p.id}"]:checked`);
+    respostas[p.id] = checked ? checked.value : '0';
+  });
+
+  // Calcula perfis
+  const { perfil, somaIntensidade, vinculoPrimario, vinculoSecundario, scores } =
+    calcularPerfil(respostas);
+
+  const dados = {
+    nome:              document.getElementById('nome').value.trim(),
+    email:             document.getElementById('email').value.trim(),
+    telefone:          document.getElementById('telefone').value.trim(),
+    perfil,
+    somaIntensidade,
+    vinculoPrimario,
+    vinculoSecundario,
+    scores,
+    respostas,
+  };
+
+  // UI de loading
+  document.getElementById('step-3').classList.remove('active');
+  document.getElementById('enviando').style.display = 'block';
+  document.getElementById('progressFill').style.width = '100%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  try {
+    const res = await fetch('/api/enviar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+    });
+
+    document.getElementById('enviando').style.display = 'none';
+
+    if (res.ok) {
+      document.getElementById('sucesso').style.display = 'block';
+    } else {
+      const err = await res.json().catch(() => ({}));
+      alert('Erro ao enviar: ' + (err.error || 'Tente novamente em instantes.'));
+      document.getElementById('step-3').classList.add('active');
+    }
+  } catch (e) {
+    document.getElementById('enviando').style.display = 'none';
+    alert('Erro de conexão. Verifique sua internet e tente novamente.');
+    document.getElementById('step-3').classList.add('active');
+  }
+}
+</script>
 
 </body>
 </html>
